@@ -1,0 +1,59 @@
+DROP DATABASE IF EXISTS Works;
+CREATE DATABASE Works DEFAULT CHARSET=GBK;
+GO
+USE Works;
+CREATE TABLE UserInfo
+(
+UserName nvarchar(50) Primary key,
+Password nvarchar(50) not null,
+QQ nvarchar(12),
+Email nvarchar(50),
+Type nchar(10) not null,
+UserImg nvarchar(250)
+);
+CREATE TABLE Activity
+(
+ActivityID int(4) Primary key,
+ActivityName nvarchar(125) not null,
+EndTime datetime(8) not null,
+ActivityPicture nvarchar(250) not NULL,
+ActivityIntroduction nvarchar(MAX),
+Summary nvarchar(250),
+ActivityVerify nchar(10) not null,
+ActivityStatus nchar(10),
+UserName nvarchar(50) not null
+);
+CREATE TABLE WorkInfo
+(
+WorkID INT(4) PRIMARY KEY,
+WORKNAME NVARCHAR(50) NOT NULL,
+WORKPICTURE NVARCHAR(250) NOT NULL,
+UPLOADTIME DATETIME(8) NOT NULL,
+WORKINTRODUCTION NVARCHAER(MAX),
+WORK VERIFY NCHAR(10) NOT NULL,
+USERNAME NVARCHAR(50) NOT NULL,
+ACTIVITYNAME NVARCHAR(125),
+RECOMMEND NCHAR(2) NOT NULL,
+RECOMMENDTIME DATETIME(8)
+);
+CREATE TABLE Comment
+(
+COMMENTID INT(4) PRIMARY KEY,
+WORKID INT(4) NOT NULL,
+WORKNAME NVARCHAR(50) NOT NULL,
+USERNAME NVARCHAR(50) NOT NULL,
+COMMENTCONTENT NVARCHAR(MAX) NOT NULL,
+COMMENTTIME DATETIME(8) NOT NULL
+);
+CREATE TABLE IMAGE
+(
+IMGID INT(4) PRIMARY KEY,
+IMGURL NVARCHAR(50) NOT NULL,
+IMGTEXT NVARCHAR(50) NOT NULL,
+IMGLINK NVARCHAR(100) NOT NULL,
+IMGALT NVARCHAR(50) NOT NULL
+);
+ActivityID int Primary key auto_increment,
+ActivityVerify nchar(10) not null DEFAULT '´ýÉóºË'
+ALTER TABLE WorkInfo
+ADD FOREIGN KEY(UserName) REFERENCES UserInfo(UserName);
